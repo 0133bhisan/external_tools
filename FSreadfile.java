@@ -47,7 +47,11 @@ public class FSreadfile {
 	    if ( s.equals(f) ) {
 		currPos += 12;
 		file.seek(currPos);
-		return file.readInt();
+		int block = file.readInt();
+		if ( block == 0 ) {
+		    throw new RuntimeException("File was deleted.");
+		}
+		return block;
 	    }
 	    currPos += 16;       	    
 	}
