@@ -75,12 +75,6 @@ public class FSreadfile {
 	file.seek(inodePos);
 
 	//Read immediate data
-	int size = file.readInt();
-
-	if ( size == 0 ) {
-	    throw new RuntimeException("File has been deleted.");
-	}
-
 	c = 0;
 	while ( c < 2044 ) {
 	    System.out.print(""+(char)file.readByte());
