@@ -4,7 +4,7 @@ import java.io.*;
 
 public class FSdeletefile {
     
-    private int nullValue = 0;
+    private int nullValue = 0x00000000;
     private RandomAccessFile file;
     private long directoryBlockPos = 4096;
     private long currPositon = 0;
@@ -46,7 +46,8 @@ public class FSdeletefile {
 		c++;
 	    }
 	    if ( s.equals(f) ) {
-		currPos+=12;
+		currPos += 12;
+		file.seek(currPos);
 		file.writeInt(nullValue);
 		return;
 	    }

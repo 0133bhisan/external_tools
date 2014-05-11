@@ -2,6 +2,10 @@ package external_tools;
 
 import java.io.*;
 
+/*
+ *FSformat formats the super block if not already formated
+ */
+
 public class FSformat {
 
     private RandomAccessFile file;

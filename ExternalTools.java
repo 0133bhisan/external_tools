@@ -9,7 +9,7 @@ public class ExternalTools {
 	if ( Args.length == 0 ) {
 	    System.out.println("Incorrect usage.");
 	    System.out.println("Usage: ExternalTools <mode> <file>");
-	    System.out.println("Mode is 0 for format, 1 for makefile and 2 for readfile");
+	    System.out.println("Mode is 0 for format, 1 for makefile and 2 for readfile,3 for deletefile ");
 	    System.out.println("File is only supplied for modes 1 and 2, indicating the file to be made or read, respectively.");
 	}
 	else if ( Args[0].equals("0") ) {
@@ -20,6 +20,9 @@ public class ExternalTools {
 	}
 	else if ( Args[0].equals("2") && Args.length == 2 ) {
 	    new FSreadfile().start(Args[1],filename);
+	}
+	else if ( Args[0].equals("3") && Args.length == 2 ) {
+	    new FSdeletefile().start(Args[1],filename);
 	}
 	else {
 	    System.out.println("Invalid argument(s).");

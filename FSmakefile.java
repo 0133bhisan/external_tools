@@ -64,14 +64,14 @@ public class FSmakefile {
 	while ( currPos <= 8191 ) {
 	    file.seek(currPos);
 	    byte b = (byte)file.read();
-	    
+
 	    if ( b == 0 ) {
 		break;
 	    }
 	    currPos += 16;
-		 
+
 	}
-	
+
 	if ( currPos >= 8191 ) {
 	    throw new RuntimeException("Directory block full.");
 	}
@@ -138,9 +138,9 @@ public class FSmakefile {
 	}
        
 	file.seek(currPos);
-	
+
 	int nfbCounter = 0;
-	
+
 	for ( c = 0; c < byteLength; c++ ) {
 	    file.writeByte((int)nfb[c]);
 	    nfbCounter++;
@@ -148,14 +148,14 @@ public class FSmakefile {
 		break;
 	    }
 	}
-	
+
 	currPos += 2044;
 
 	//Write the direct indeces
 	if ( byteLength <= 2044 ) {
 	    return;
 	}
-	
+
 	while ( nfbCounter < nfb.length - 1 ) {
 	    freeBlock = getFreeBlock();
 	    incrementFreeBlock();
@@ -183,7 +183,7 @@ public class FSmakefile {
 		nfbCounter++;
 	    }
 	}
-	
+
     }
 
 }

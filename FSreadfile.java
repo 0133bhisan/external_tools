@@ -47,19 +47,15 @@ public class FSreadfile {
 	    if ( s.equals(f) ) {
 		currPos += 12;
 		file.seek(currPos);
-		int block = file.readInt();
-		if ( block == 0 ) {
-		    throw new RuntimeException("File was deleted.");
-		}
-		return block;
+		return file.readInt();
 	    }
 	    currPos += 16;       	    
 	}
-	
+
 	if ( currPos > 8191 ) {
 	    throw new RuntimeException("File not found.");
 	}
-	
+
 	return 0;
     }
 
@@ -71,10 +67,14 @@ public class FSreadfile {
 	    inodePos += 4096;
 	    c--;
 	}
-
 	file.seek(inodePos);
+	int length = file.readInt();
 
 	//Read immediate data
+	if ( blockNum == 0 ) {
+	    throw new RuntimeException("File was deleted.");
+	}
+
 	c = 0;
 	while ( c < 2044 ) {
 	    System.out.print(""+(char)file.readByte());
@@ -95,7 +95,7 @@ public class FSreadfile {
 		pos += 4096;
 		c--;
 	    }
-	    
+
 	    file.seek(pos);
 
 	    c = 0;
